@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hitcounter
+  labels:
+    app: hitcounter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hitcounter
+  template:
+    metadata:
+      labels:
+        app: hitcounter
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: hitcounter
+        image: localhost:32000/hitcounter:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+          - name: DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: redis-creds
+                key: uri
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "64Mi"
+          requests:
+            cpu: "0.25"        
+            memory: "32Mi"
