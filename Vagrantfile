@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     workshop.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "127.0.0.1"
     workshop.vm.network "forwarded_port", guest: 10443, host: 10443, host_ip: "127.0.0.1"
     
-    workshop.vm.network "private_network", ip: "192.168.33.10"
+    workshop.vm.network "private_network", ip: "192.168.56.4"
 
     ############################################################
     # Configure Vagrant to use VirtualBox:
