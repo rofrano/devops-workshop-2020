@@ -18,6 +18,7 @@ services:
     command: sleep infinity
     environment:
       FLASK_APP: service:app
+      PORT: 3000
       DATABASE_URI: "redis://redis:6379/0"
     networks:
       - dev

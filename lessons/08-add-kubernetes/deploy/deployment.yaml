@@ -17,7 +17,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: hitcounter
-        image: localhost:32000/hitcounter:1.0
+        image: k3d-registry.localhost:50000/hitcounter:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 5000

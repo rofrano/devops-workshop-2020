@@ -8,8 +8,8 @@ Test cases can be run with the following:
 import os
 import logging
 from unittest import TestCase
-from flask_api import status  # HTTP Status Codes
-#from service.routes import app
+from service import status  # HTTP Status Codes
+#from service import app
 
 ######################################################################
 #  T E S T   C A S E S
