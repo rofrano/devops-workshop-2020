@@ -1,0 +1,35 @@
+{
+	"name": "Python Docker",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/app",
+	"remoteUser": "vscode",
+	"overrideCommand": false,
+	
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"VisualVisualStudioExptTeam.vscodeintellicodeStudio",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"ms-azuretools.vscode-docker",
+    	"wholroyd.jinja",
+		"cstrap.flask-snippets",
+		"yzhang.markdown-all-in-one",
+		"DavidAnson.vscode-markdownlint",
+		"bierner.github-markdown-preview",        
+		"donjayamanne.githistory",
+		"redhat.vscode-yaml",
+		"inercia.vscode-k3d"
+	],
+    "postCreateCommand": "pip install -U pip wheel && pip install -r requirements.txt",
+	"features": {
+		"docker-in-docker": {
+			"version": "latest",
+			"moby": true
+		}
+	}
+	// "forwardPorts": [8080]
+}
