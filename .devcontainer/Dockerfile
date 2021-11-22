@@ -35,6 +35,9 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
     && curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash \
     && curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
+# Update Python tools
+RUN pip3 install -U pip wheel setuptools
+
 # Set up the development environment
 WORKDIR /app
 VOLUME [ "/var/lib/docker" ]
