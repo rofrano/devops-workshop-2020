@@ -1,18 +1,17 @@
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hitcounter-ingress
+  name: my-nginx
   annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /counters
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: hitcounter
+            name: my-nginx
             port:
-              number: 5000
+              number: 80

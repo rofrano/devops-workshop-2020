@@ -11,7 +11,7 @@
 
 **Tasks:**
 
-- [ ] Need to update the `Vagrantfile` with Redis Docker image
+- [ ] Need to update the `docker-compose.yml` with Redis Docker image
 - [ ] Need to create a Model that uses Redis
 
 **Acceptance Criteria:**

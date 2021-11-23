@@ -6,13 +6,13 @@
 
 **Assumptions:**
 
-- We will use Travis CI
-- Need to tell Travis CI that we need a Redis database
+- We will use GitHub Actions
+- Need to tell GitHub Actions that we need a Redis database
 
 **Acceptance Criteria:**
 
 ```gherkin
-Given I have set up Travis CI
+Given I have set up GitHub Actions
 When I make a Pull Request
 Then my automated tests should run automatically
 And if they fail the build will be stopped

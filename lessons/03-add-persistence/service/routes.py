@@ -2,7 +2,7 @@ import os
 from redis import Redis
 from service import app
 
-DATABASE_URI = os.getenv("DATABASE_URI", "redis://localhost:6379")
+DATABASE_URI = os.getenv("DATABASE_URI", "redis://redis:6379")
 
 counter = Redis.from_url(DATABASE_URI, encoding="utf-8", decode_responses=True)
 

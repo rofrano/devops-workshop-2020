@@ -1,0 +1,165 @@
+number,title,state,labels,milestone,user,assignee,assignees,created_at,updated_at,closed_at,body
+17,Present an Introduction to Kubernetes,open,documentation,,,,,,,,Overview of Kubernetes. Attendees will deploy the Docker version of their microservice in a Kubernetes cluster. They will implement Story #7 and will also have to deploy a Redis service in Kubernetes for their microservice.
+16,Present an Introduction to Docker,open,documentation,,,,,,,,Overview of Docker containers. Attendees will create a Dockerfile for their microservices and run it in a Docker container. They will implement Story #6 and update Travis CI to run tests for the Dockerized version.
+15,Introduce Continuous Integration and Continuous Delivery,open,documentation,,,,,,,,Attendees will be introduced to the concepts of CI/CD and in particular Travis CI. They will connect their git repo to Travis CI so that their test cases run with every Pull Request. Stories include added Redis to their Travis CI in Story #5 and implementing the remainder of the REST interface in Story #6.
+14,Introduce Microservices and REST APIs,open,documentation,,,,,,,,Introduction to Microservice Architecture and REST APIs. Attendees will begin to code their first REST API for the hit counter application starting with test cases that follow good RESTful coding standards. Stories include Story #3 and Story #4 adding persistence to the counter in the form of a Redis database.
+13,Introduce Test Driven Development,open,documentation,,,,,,,,"Introduction to Test Driven Development. Attendees will write the test cases for the code they wish they had, and then implement that code following Agile Planning and Feature Branch Workflow. They will implement Story #2 to add a non-persistent counter where each GET increments the counter."
+12,Present Social Coding,open,documentation,,,,,,,,"Introduction to the Git Feature Branch Workflow. Attendees will assign the first Story #1 from their Sprint Backlog to themselves, create a feature branch to work on the story, and issue a pull request to merge their code back into master."
+11,Introduce Agile Planning,open,documentation,,,,,,,,"Introduction to Agile Planning concepts. Create an agile plan for the remainder of the workshop. Attendees will create Stories that they will execute during workshop. They will also use a Burndown chart to track their progress.
+
+Stories include:
+
+- Create a skeleton Flask service
+- Add a counter where each GET increments the counter
+- Make the counter persistent
+- Add ability for multiple counters that are RESTful
+- Setup Continuous Integration
+- Add ability to delete a counter
+- Add Docker support
+- Add Kubernetes support
+- Full stories for planning are here
+"
+10,Present the DevOps Overview,open,documentation,,,,,,,,Brief Overview of DevOps with an emphasis on the Software Developer perspective. Attendees will be introduced to the practices that are covered in this workshop and also learn why culture is the most critical aspect of DevOps to get right.
+9,Present Introduction and Setup,open,documentation,,,,,,,,"Overview of how the workshop will be run. Get Vagrant and VirtualBox installed and setup and building during the DevOps Overview section if you haven't done that before the workshop.
+
+- Follow these instructions to Install Prerequisite Software
+- Instructions on Working with Vagrant and VirtualBox"
+7,Add Kubernetes support,open,enhancement,,,,,,,,"**As a:** Service Provider  
+**I need:** the ability to deploy my service on Kubernetes  
+**So that:** I can easily scale it out horizontally as needed  
+
+**Assumptions:**
+
+- Need to create Kubernetes manifests
+- Need a to deploy a Redis database in Kubernetes
+
+**Tasks:**
+
+- [ ] Create a `deployment.yaml` file for service
+- [ ] Create a `service.yaml` file for the service
+- [ ] Create a `redis.yaml` file to deploy Redis as a `StatefulService`
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have my service in Kubernetes
+When I ask Kubernetes to scale to 5 instance
+Then I should have 5 instances of my service running
+```"
+6,Add Docker support,open,,,,,,,,,"**As a:** Service Provider  
+**I need:** the ability to deploy my service using Docker  
+**So that:** I can move with speed and agility  
+
+**Assumptions:**
+
+- Need to create a `Dockerfle` for the service
+- Need to update GitHub Actions to use Docker version
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have my service in a Docker image
+When I user docker run
+Then I should have my service running in a contatiner
+```"
+5,Setup Continuous Integration,open,,,,,,,,,"**As a:** Developer  
+**I need:** the ability to continuously test my code  
+**So that:** I can know if a Pull Request has broken the build  
+
+**Assumptions:**
+
+- We will use GutHub Actions
+- Need to tell GitHub Actions that we need a Redis database
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have set up GitHub Actions
+When I make a Pull Request
+Then my automated tests should run automatically
+And if they fail the build will be stopped
+```"
+4,Add ability for multiple counters that are RESTful,open,enhancement,,,,,,,,"**As a:** User  
+**I need:** the ability to create multiple RESTful counters  
+**So that:** I can keep track of multiple hit targets
+
+**Assumptions:**
+
+- We will implement using REST API guidelines
+- Add ability to create multiple named counters
+- Add ability to update counters by name
+- Add ability to delete counters by name
+
+**Tasks:**
+
+- [ ] Need to update root `/` URL to return `json` message
+- [ ] Need to rename `/counter` to `/counters`
+- [ ] Need to change `GET` to only return the counter
+- [ ] Need to implemtent `POST` to create new counters
+- [ ] Need to implement `PUT` to update multiple counters
+- [ ] Need to implement `DELETE` to delete multiple counters
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have a multi-counter ability
+When I create a counter named foo
+And I update the counter named foo to 1
+And I call the hit /counters/foo URL
+Then I should see 1 returned from the service
+```"
+3,Make the counter persistent,open,enhancement,,,,,,,,"**As a:** User  
+**I need:** the hit counter to persist the last known count  
+**So that:** I don't loose track of the count after the service is restarted
+
+**Assumptions:**
+
+- We will use Redis as the persistent store
+- A Redis image from Docker should be used
+
+**Tasks:**
+
+- [ ] Need to update the `Vagrantfile` with Redis Docker image
+- [ ] Need to create a Model that uses Redis
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have a persistent counter
+When I advance the hit counter to 2
+And I restart the hit counter service
+And I call the hit /counter URL
+Then I should see 3 returned from the service
+```"
+2,Add a counter where each GET increments the counter,open,enhancement,,,,,,,,"**As a:** User  
+**I need:** a way to register a hit on the counter
+**So that:** it increments with every access
+
+**Assumptions:**
+
+- Calling the `GET /counter` URl will increment the counter
+- No need for the counter to be persistent for now
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have a counter
+When I call the /counter URL
+Then I should see the counter increment
+```"
+1,Create a skeleton Flask service,open,enhancement,,,,,,,,"**As a:** Service Provider  
+**I need:** a minimal Flask service  
+**So that:** my developers have a starting point to add code
+
+**Assumptions:**
+
+- Only the root `/` URl needs to be defined
+- Call it `app.py` for now
+
+**Acceptance Criteria:**
+
+```gherkin
+Given I have a skeleton Flask app
+When I call the / URL
+Then I should see ""Hello from Flask"" returned
+```"
