@@ -1,7 +1,7 @@
 ---
 # .github/workflows/workflow.yml
 # See https://github.com/marketplace?type=actions for more actions
-name: CI Tgiests
+name: CI Tests
 on:
   push:
     branches:
