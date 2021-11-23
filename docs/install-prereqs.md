@@ -2,11 +2,11 @@
 
 The first problem every software development team encounters is how to get developers productive quickly and keep them productive by giving them a consistent development environment that is easy to setup and maintain. Some developers might have Mac laptops while others prefer Windows, and still others prefer Linux; but these environments are very different and do not behave the same.
 
-To solve this problem, will we Visual Studio Code with the Remote Containers Extensions for Docker and be developing in a Debian Linix 11 Docker container. Docker will provide an Infrastructure as Code environment on the developers desktop alone with Visual Studio Code, and a REST tool like Postman. If you don't have this software installed on your development computer, the first step is down download and install them.
+To solve this problem, will we Visual Studio Code with the Remote Containers Extensions for Docker and be developing in a Debian Linux 11 Docker container. Docker will provide an Infrastructure as Code environment on the developers desktop alone with Visual Studio Code, and a REST tool like Postman. If you don't have this software installed on your development computer, the first step is down download and install them.
 
-**Note:** _The lab will be using a local Debian 11 Linux environment so you will need to know a minimal amount of Unix commans to get around._
+**Note:** _The lab will be using a local Debian 11 Linux environment so you will need to know a minimal amount of Unix commands to get around._
 
-## Mac Install
+## Mac Install using Homebrew
 
 [**Homebrew**]((https://brew.sh)) is my preferred method of installing tools on the Mac. First because it is quick and easy, and second because maintaining the latest version is done for you with a simple `brew upgrade` command. If you are tired of downloading software and keeping it up to date, you want to use `brew` instead:
 
@@ -25,11 +25,30 @@ brew install --cask visual-studio-code
 brew install postman
 ```
 
-That will install the necessary software for this workshop onto your Mac. If you don't want to use Homebrew, you can follow the Windows installation instructions and install Docker Desktop and VisualStudio Code manually. Postman is optional but recommended.
+That will install the necessary software for this workshop onto your Mac. If you don't want to use Homebrew, you can follow the manual installation instructions and install Docker Desktop and VisualStudio Code manually. Postman is optional but recommended.
 
-## Windows Install
+## Windows using Chocolatey
 
-If you are on Windows you can manually download and install all of the software needed.
+[**Chocolatey**](https://chocolatey.org/install) is the preferred method of installing tools on Windows. You can install Chocolatey with the following command:
+
+```sh
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+Install **Git**, **Docker**, **Visual Studio Code** and **Postman** using the `choco` command
+
+```sh
+choco install git.install
+choco install docker-desktop
+choco install vscode
+choco install postman
+```
+
+That will install the necessary software for this workshop onto your Windows PC. If you don't want to use Chocolatey, you can follow the manual installation instructions and install Docker Desktop and VisualStudio Code manually. Postman is optional but recommended.
+
+## Manual Install
+
+If don't want to use a package manager like Homebrew or Chocolatey, you can manually download and install all of the software needed.
 
 Link to [Git Client](http://git-scm.com/downloads)  
 
@@ -50,6 +69,14 @@ code --install-extension ms-vscode-remote.remote-containers
 ```
 
 That will install the Remote Containers extension in your Visual Studio Code. You can also go to the marketplace tab in VSCoe and type "remote" in the search bar and select **Remote Containers** from the list and click **Install**.
+
+## Install the Code Command for Mac
+
+Instructions on how to install the `code` command for Mac can be found here: [Code Command for Mac](https://code.visualstudio.com/docs/setup/mac)
+
+You need to launch VS Code. Then open the Command Palette **(⇧⌘P)** and type 'shell command' to find the Shell Command: _Install 'code' command in PATH command_.
+
+Restart the terminal for the new $PATH value to take effect. You'll be able to type `code .` in any folder to start editing files in that folder.
 
 ## That's it
 
