@@ -7,7 +7,7 @@
 **Assumptions:**
 
 - Need to create a `Dockerfle` for the service
-- Need to update Travis CI to use Docker version
+- Need to update GitHub Actions to use Docker version
 
 **Acceptance Criteria:**
 
