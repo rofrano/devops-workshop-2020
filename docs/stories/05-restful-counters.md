@@ -9,14 +9,16 @@
 - We will implement using REST API guidelines
 - Add ability to create multiple named counters
 - Add ability to update counters by name
+- Add ability to delete counters by name
 
 **Tasks:**
 
 - [ ] Need to update root `/` URL to return `json` message
-- [ ] Need to rename `/counter` to `/counters` 
+- [ ] Need to rename `/counter` to `/counters`
 - [ ] Need to change `GET` to only return the counter
 - [ ] Need to implemtent `POST` to create new counters
 - [ ] Need to implement `PUT` to update multiple counters
+- [ ] Need to implement `DELETE` to delete multiple counters
 
 **Acceptance Criteria:**
 

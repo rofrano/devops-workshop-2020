@@ -1,0 +1,43 @@
+---
+# .github/workflows/workflow.yml
+# See https://github.com/marketplace?type=actions for more actions
+name: CI Tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: python:3.9-slim
+
+    # Required services    
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+
+      - name: Run unit tests with nose
+        run: nosetests
+        env:
+          DATABASE_URI: "redis://redis:6379"
+
+      # - name: Upload code coverage
+      #   uses: codecov/codecov-action@v2  
+  

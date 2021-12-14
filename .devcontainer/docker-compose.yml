@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    hostname: devops
+    init: true 
+    privileged: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ..:/app
+      - ~/.gitconfig:/home/vscode/.gitconfig
+      - ~/.ssh/:/home/vscode/.ssh/
+      - dind-var-lib-docker:/var/lib/docker
+    command: sleep infinity
+    environment:
+      FLASK_APP: service:app
+      PORT: 3000
+      DATABASE_URI: "redis://redis:6379/0"
+    networks:
+      - dev
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6-alpine
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    networks:
+      - dev
+
+volumes:
+  redis:
+  dind-var-lib-docker:
+
+networks:
+  dev:
