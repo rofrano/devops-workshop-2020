@@ -52,6 +52,10 @@ Vagrant.configure("2") do |config|
     if File.exists?(File.expand_path("~/.ssh/id_rsa"))
       workshop.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
     end
+    
+    if File.exists?(File.expand_path("~/.ssh/id_ed25519"))
+      workshop.vm.provision "file", source: "~/.ssh/id_ed25519", destination: "~/.ssh/id_ed25519"
+    end
 
     # Copy your .vimrc file so that your VI editor looks nice
     if File.exists?(File.expand_path("~/.vimrc"))
